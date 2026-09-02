@@ -57,6 +57,18 @@ mat-nav-list {
   }
 }
 
+.source-link {
+  display: block;
+  padding: 12px 20px;
+  font-size: 0.8em;
+  color: $text-muted-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .company-name {
   margin-left: 8px;
   font-size: 1.2em;
