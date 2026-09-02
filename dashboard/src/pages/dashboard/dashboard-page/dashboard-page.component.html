@@ -1,0 +1,21 @@
+<div class="card-container">
+  <mat-card class="card full-width">
+    <mat-card-header>
+      <mat-icon mat-card-avatar>qr_code</mat-icon>
+      <mat-card-title>Checkpoints</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <app-checkpoint-list></app-checkpoint-list>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="card full-width">
+    <mat-card-header>
+      <mat-icon mat-card-avatar>list_alt_check</mat-icon>
+      <mat-card-title>Recent scans</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <app-scan-list [brief]="true"></app-scan-list>
+    </mat-card-content>
+  </mat-card>
+</div>

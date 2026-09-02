@@ -1,0 +1,28 @@
+<div class="page-container">
+  <div class="header-row">
+    <h2>My Shifts</h2>
+    <a mat-button routerLink="/">Back to scanner</a>
+  </div>
+
+  <mat-card *ngFor="let shift of shifts" class="shift-card">
+    <mat-card-content>
+      <div class="shift-row">
+        <div class="shift-info">
+          <div class="shift-date">{{ shift.startTime | date:'EEE, dd MMM yyyy' }}</div>
+          <div class="shift-site">{{ shift.Location?.address ?? 'Site TBC' }}</div>
+          <div class="shift-time">{{ shift.startTime | date:'HH:mm' }} - {{ shift.endTime | date:'HH:mm' }}</div>
+          <div class="shift-hours" *ngIf="shift.clockInAt && shift.clockOutAt">{{ hoursWorked(shift) }} hrs worked</div>
+        </div>
+        <div class="shift-actions">
+          <span *ngIf="shift.clockInAt && shift.clockOutAt" class="status-chip status-completed">
+            <mat-icon>check_circle</mat-icon> Completed
+          </span>
+          <button mat-raised-button color="primary" *ngIf="!shift.clockInAt" (click)="clockIn(shift)">Clock In</button>
+          <button mat-raised-button color="accent" *ngIf="shift.clockInAt && !shift.clockOutAt" (click)="clockOut(shift)">Clock Out</button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <p *ngIf="shifts.length === 0" class="no-shifts">No shifts scheduled.</p>
+</div>

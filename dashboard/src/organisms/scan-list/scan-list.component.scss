@@ -1,0 +1,62 @@
+.truncate-cell {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.truncate-text {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.mat-form-field {
+  width: 48%;
+}
+
+table {
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .truncate-cell {
+    max-width: 100px;
+  }
+
+  .truncate-text {
+    position: relative;
+
+    &:hover::after {
+      content: attr(title);
+      position: absolute;
+      left: 0;
+      top: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 5px;
+      border-radius: 3px;
+      z-index: 1;
+      white-space: normal;
+      word-break: break-word;
+      max-width: 200px;
+    }
+  }
+
+  .filter-container {
+    flex-direction: column;
+  }
+
+  .mat-form-field {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

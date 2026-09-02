@@ -1,0 +1,67 @@
+@import "variables";
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  display: block;
+  background-color: var(--light-background);
+  color: #{$dark-primary-text};
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button.cta {
+  font-size: 1.05rem;
+  padding: 0.6rem 2rem;
+  background-color: $accent-color !important;
+  color: white !important;
+  border-radius: var(--radius-sm) !important;
+}
+button.cta:hover {
+  background-color: $accent-darker-color !important;
+}
+
+// Animaciones
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-up {
+  opacity: 0;
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+.mat-mdc-card {
+  border: none !important;
+
+  .mat-mdc-card-header {
+    background-color: $primary-color;
+    color: white;
+    padding: 14px 16px !important;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+
+    .mat-mdc-card-title {
+      color: white;
+      font-size: 17px;
+    }
+  }
+}

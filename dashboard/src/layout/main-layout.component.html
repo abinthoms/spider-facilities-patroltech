@@ -1,0 +1,61 @@
+<mat-toolbar color="primary" class="sticky-header">
+  <button mat-icon-button (click)="sidenav.toggle()" class="mobile-menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div class="logo">
+    <img ngSrc="/spider-facilities-icon.png" alt="Spider Facilities" width="40" height="40"/>
+    <a mat-button routerLink="/">Spider Facilities</a>
+  </div>
+  <span class="spacer"></span>
+  <nav class="desktop-nav">
+    <a mat-button routerLink="/" fragment="features">Features</a>
+    <a mat-button routerLink="/login" *ngIf="!userAuthenticated">Login</a>
+    <button mat-raised-button color="accent" class="cta" (click)="navigateToStart()">{{message_start}}</button>
+  </nav>
+</mat-toolbar>
+
+<!-- Main content -->
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="over">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/">Home</a>
+      <a mat-list-item routerLink="/" fragment="features">Features</a>
+      <a mat-list-item routerLink="/how-to-start">How to start</a>
+      <a mat-list-item routerLink="/contacto">Contact</a>
+      <a mat-list-item routerLink="/login">Login</a>
+      <button mat-raised-button color="accent" class="cta" (click)="navigateToStart()">Get Started</button>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/" fragment="features">Features</a></li>
+        <li><a routerLink="/" fragment="faw">Frequently Asked Questions</a></li>
+        <li><a routerLink="/how-to-start">How to start</a></li>
+        <li><a routerLink="/contacto">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Policies</h3>
+      <ul>
+        <li><a routerLink="/terminos">Terms and Conditions</a></li>
+        <li><a routerLink="/privacidad">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">
+    © 2026 Spider Facilities. All rights reserved.
+  </div>
+</footer>

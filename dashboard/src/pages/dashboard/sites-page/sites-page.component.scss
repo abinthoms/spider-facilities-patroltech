@@ -1,0 +1,19 @@
+.row-action {
+  cursor: pointer;
+  color: #6b7280;
+  margin-right: 12px;
+
+  &:hover {
+    color: var(--primary-color, #1d3f8f);
+  }
+}
+
+.portal-link-cell {
+  font-family: monospace;
+  font-size: 12px;
+  color: #6b7280;
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

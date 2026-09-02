@@ -1,0 +1,44 @@
+@import 'variables';
+
+.page-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.photo-picker {
+  margin-bottom: 1.5rem;
+}
+
+.photo-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px dashed $primary-color;
+  border-radius: var(--radius-sm);
+  color: $primary-color;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.photo-preview {
+  width: 100%;
+  max-height: 240px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  margin-top: 12px;
+}

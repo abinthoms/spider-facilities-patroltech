@@ -1,0 +1,27 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.section-heading {
+  margin: 8px 0 -8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary-color, #6b7280);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.form-error {
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--warn-lighter-color, #f3b4b4);
+  color: var(--warn-darker-color, #a31d1d);
+  font-size: 13px;
+}

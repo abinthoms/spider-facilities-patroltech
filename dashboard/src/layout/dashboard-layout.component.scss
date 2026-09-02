@@ -1,0 +1,110 @@
+@import "variables";
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 220px;
+  border-right: 1px solid var(--border-color);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 20px;
+  font-size: 1.25em;
+  font-weight: 700;
+  color: $primary-color;
+
+  mat-icon {
+    color: $accent-color;
+  }
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+mat-nav-list {
+  padding: 8px 12px !important;
+
+  a.mat-mdc-list-item {
+    border-radius: var(--radius-sm);
+    margin-bottom: 2px;
+    color: $text-muted-color;
+    --mdc-list-list-item-label-text-color: #{$text-muted-color};
+
+    mat-icon {
+      color: $text-muted-color;
+    }
+
+    &:hover {
+      background: var(--surface-alt-color);
+    }
+
+    &.active-link {
+      background: $primary-color;
+      --mdc-list-list-item-label-text-color: white;
+      font-weight: 600;
+
+      mat-icon {
+        color: white;
+      }
+    }
+  }
+}
+
+.company-name {
+  margin-left: 8px;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.spacer-small {
+  margin: 0 10px;
+}
+
+.location-select {
+  width: 200px;
+  margin-top: -1.25em; // Ajusta el margen superior para alinear con la toolbar
+  
+  ::ng-deep {
+    .mat-mdc-form-field-subscript-wrapper {
+      display: none;
+    }
+    
+    .mat-mdc-form-field-infix {
+      padding: 0.5em 0;
+    }
+
+    .mat-mdc-text-field-wrapper {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .mat-mdc-form-field-flex {
+      margin-top: 0;
+    }
+    
+    .mdc-text-field--outlined {
+      --mdc-outlined-text-field-outline-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .mat-mdc-select-value-text {
+      color: white;
+    }
+  }
+}
+
+
+.content {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}

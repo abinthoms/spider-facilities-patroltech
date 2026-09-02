@@ -1,0 +1,64 @@
+<div class="control-room-grid">
+  <mat-card class="card full-width">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title><mat-icon mat-card-avatar>monitor_heart</mat-icon>On Duty Now</mat-card-title>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="guard">
+          <th mat-header-cell *matHeaderCellDef>Guard</th>
+          <td mat-cell *matCellDef="let element">{{ element.Patroller?.name ?? 'Unknown' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="site">
+          <th mat-header-cell *matHeaderCellDef>Site</th>
+          <td mat-cell *matCellDef="let element">{{ element.Location?.address ?? '—' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="clockedInAt">
+          <th mat-header-cell *matHeaderCellDef>Clocked in</th>
+          <td mat-cell *matCellDef="let element">{{ element.clockInAt | date:'HH:mm' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="elapsed">
+          <th mat-header-cell *matHeaderCellDef>Elapsed</th>
+          <td mat-cell *matCellDef="let element">{{ elapsedMinutes(element) }} min</td>
+        </ng-container>
+
+        <ng-container matColumnDef="geofence">
+          <th mat-header-cell *matHeaderCellDef>Geofence</th>
+          <td mat-cell *matCellDef="let element">
+            <mat-icon *ngIf="element.clockInWithinGeofence === false" color="warn" matTooltip="Clocked in away from the site">warning</mat-icon>
+            <mat-icon *ngIf="element.clockInWithinGeofence === true" class="ok-icon" matTooltip="Clocked in at the site">check_circle</mat-icon>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="5">No one is currently on duty</td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="card full-width">
+    <mat-card-header>
+      <mat-card-title><mat-icon mat-card-avatar>bolt</mat-icon>Live Activity</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <ul class="activity-list">
+        <li *ngFor="let entry of activity">
+          <mat-icon>{{ entry.icon }}</mat-icon>
+          <span class="activity-message">{{ entry.message }}</span>
+          <span class="activity-time">{{ entry.timestamp | date:'HH:mm:ss' }}</span>
+        </li>
+      </ul>
+      <p *ngIf="activity.length === 0" class="no-activity">No activity yet. Events will appear here live.</p>
+    </mat-card-content>
+  </mat-card>
+</div>

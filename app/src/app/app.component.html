@@ -1,0 +1,12 @@
+<mat-toolbar>
+  <div class="logo">
+    <img ngSrc="/spider-facilities-icon.png" alt="Spider Facilities" width="40" height="40"/>
+  </div>
+  <span>Spider Facilities | {{organizationName}}</span>
+</mat-toolbar>
+
+<router-outlet />
+
+<button mat-fab color="warn" class="logout-button" (click)="logout()" aria-label="Log out" *ngIf="isLogged">
+  <mat-icon>exit_to_app</mat-icon>
+</button>

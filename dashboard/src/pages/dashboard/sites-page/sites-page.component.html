@@ -1,0 +1,36 @@
+<mat-card class="card full-width">
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title><mat-icon mat-card-avatar>store</mat-icon>Sites</mat-card-title>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef>Site</th>
+        <td mat-cell *matCellDef="let element">{{ element.address }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="portal">
+        <th mat-header-cell *matHeaderCellDef>Client Compliance Portal</th>
+        <td mat-cell *matCellDef="let element" class="portal-link-cell">{{ portalUrl(element) }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <mat-icon class="row-action" (click)="copyLink(element)" matTooltip="Copy client portal link">content_copy</mat-icon>
+          <mat-icon class="row-action" (click)="regenerateLink(element)" matTooltip="Regenerate link (revokes the old one)">autorenew</mat-icon>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="3">No sites yet</td>
+      </tr>
+    </table>
+  </mat-card-content>
+</mat-card>

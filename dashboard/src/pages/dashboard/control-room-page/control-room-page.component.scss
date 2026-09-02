@@ -1,0 +1,46 @@
+.control-room-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ok-icon {
+  color: var(--success-color);
+}
+
+.activity-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 400px;
+  overflow-y: auto;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 4px;
+    border-bottom: 1px solid var(--border-color);
+
+    mat-icon {
+      color: var(--info-color);
+      flex-shrink: 0;
+    }
+  }
+}
+
+.activity-message {
+  flex: 1;
+}
+
+.activity-time {
+  color: var(--text-muted-color);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.no-activity {
+  color: var(--text-muted-color);
+  text-align: center;
+  padding: 20px 0;
+}

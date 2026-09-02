@@ -1,0 +1,38 @@
+<h2>Welcome back</h2>
+<p class="subtitle">Sign in to manage your patrols</p>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" formControlName="email" required>
+    <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+      Email is required
+    </mat-error>
+    <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+      Invalid email
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required>
+    <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
+      <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+      Password is required
+    </mat-error>
+    <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+      Password must be at least 6 characters long
+    </mat-error>
+    <mat-hint [align]="'end'" (click)="recoverPassword()" style="cursor:pointer">Recover your password</mat-hint>
+  </mat-form-field>
+
+  <button mat-raised-button color="accent" type="submit" [disabled]="loginForm.invalid" class="submit-btn">
+    Sign In
+  </button>
+
+  <button mat-stroked-button color="primary" (click)="register()" type="button">
+    Create an account
+  </button>
+
+</form>

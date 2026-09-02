@@ -1,0 +1,44 @@
+<form [formGroup]="incidentForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Category</mat-label>
+    <mat-select formControlName="category" required>
+      <mat-option *ngFor="let category of categories" [value]="category">
+        {{ category }}
+      </mat-option>
+    </mat-select>
+    @if (incidentForm.get('category')?.hasError('required') && incidentForm.get('category')?.touched) {
+      <mat-error>Category is required</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Site</mat-label>
+    <mat-select formControlName="locationId">
+      <mat-option [value]="''">Not site-specific</mat-option>
+      <mat-option *ngFor="let location of locations" [value]="location.id">
+        {{ location.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title" required>
+    @if (incidentForm.get('title')?.hasError('required') && incidentForm.get('title')?.touched) {
+      <mat-error>Title is required</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description" rows="4" required></textarea>
+    @if (incidentForm.get('description')?.hasError('required') && incidentForm.get('description')?.touched) {
+      <mat-error>Description is required</mat-error>
+    }
+  </mat-form-field>
+
+  <div class="button-container">
+    <button mat-raised-button color="primary" type="submit" [disabled]="incidentForm.invalid">Save</button>
+    <button mat-button type="button" (click)="onCancel()">Cancel</button>
+  </div>
+</form>

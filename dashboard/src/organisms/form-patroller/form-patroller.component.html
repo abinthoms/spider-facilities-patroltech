@@ -1,0 +1,93 @@
+<form [formGroup]="patrollerForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" required>
+    @if (patrollerForm.get('name')?.hasError('required') && patrollerForm.get('name')?.touched) {
+      <mat-error>Name is required</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" type="email">
+    @if (patrollerForm.get('email')?.hasError('email') && patrollerForm.get('email')?.touched) {
+      <mat-error>Please enter a valid email address</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>PIN</mat-label>
+    <input matInput formControlName="pin" type="password" inputmode="numeric" maxlength="6" autocomplete="off">
+    @if (patrollerForm.get('pin')?.hasError('required') && patrollerForm.get('pin')?.touched) {
+      <mat-error>PIN is required</mat-error>
+    }
+    @if (patrollerForm.get('pin')?.hasError('pattern') && patrollerForm.get('pin')?.touched) {
+      <mat-error>PIN must be 4-6 digits</mat-error>
+    }
+  </mat-form-field>
+
+  <h3 class="section-heading">SIA Licence</h3>
+
+  <mat-form-field appearance="fill">
+    <mat-label>SIA licence number</mat-label>
+    <input matInput formControlName="siaLicenceNumber">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Licence type</mat-label>
+    <input matInput formControlName="siaLicenceType" list="siaLicenceTypeOptions">
+    <datalist id="siaLicenceTypeOptions">
+      <option *ngFor="let type of siaLicenceTypeSuggestions" [value]="type"></option>
+    </datalist>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Licence expiry</mat-label>
+    <input matInput type="date" formControlName="siaLicenceExpiry">
+  </mat-form-field>
+
+  <h3 class="section-heading">Right to Work</h3>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Document type checked</mat-label>
+    <input matInput formControlName="rightToWorkDocumentType" list="rtwDocumentOptions">
+    <datalist id="rtwDocumentOptions">
+      <option *ngFor="let doc of rightToWorkDocumentSuggestions" [value]="doc"></option>
+    </datalist>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Verified on</mat-label>
+    <input matInput type="date" formControlName="rightToWorkVerifiedAt">
+    <mat-hint>Date a staff member checked this guard's right to work</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Right to work expiry</mat-label>
+    <input matInput type="date" formControlName="rightToWorkExpiry">
+    <mat-hint>Leave blank if there's no time limit, e.g. British/Irish citizen</mat-hint>
+  </mat-form-field>
+
+  <h3 class="section-heading">Payroll &amp; Working Time</h3>
+
+  <mat-form-field appearance="fill">
+    <mat-label>National Insurance number</mat-label>
+    <input matInput formControlName="nationalInsuranceNumber" placeholder="e.g. AB123456C" style="text-transform: uppercase;">
+    @if (patrollerForm.get('nationalInsuranceNumber')?.hasError('pattern') && patrollerForm.get('nationalInsuranceNumber')?.touched) {
+      <mat-error>Enter a valid NI number, e.g. AB123456C</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-checkbox formControlName="workingTimeOptOut">
+    Guard has signed the Working Time Regulations opt-out (permits an average working week over 48 hours)
+  </mat-checkbox>
+
+  <div class="form-error" *ngIf="submitError">
+    {{ submitError }}
+  </div>
+
+  <div class="button-container">
+    <button mat-raised-button color="primary" type="submit" [disabled]="patrollerForm.invalid">Save</button>
+    <button mat-button type="button" (click)="onCancel()">Cancel</button>
+  </div>
+</form>

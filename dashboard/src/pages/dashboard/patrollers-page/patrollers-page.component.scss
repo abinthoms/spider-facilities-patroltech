@@ -1,0 +1,8 @@
+.row-action {
+  cursor: pointer;
+  color: #6b7280;
+
+  &:hover {
+    color: var(--primary-color, #1d3f8f);
+  }
+}

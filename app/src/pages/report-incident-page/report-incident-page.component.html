@@ -1,0 +1,44 @@
+<div class="page-container">
+  <div class="header-row">
+    <h2>Report Incident</h2>
+    <a mat-button routerLink="/">Cancel</a>
+  </div>
+
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="incidentForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="category" required>
+            <mat-option *ngFor="let category of categories" [value]="category">{{ category }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="incidentForm.get('category')?.hasError('required')">Category is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title" required>
+          <mat-error *ngIf="incidentForm.get('title')?.hasError('required')">Title is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>What happened?</mat-label>
+          <textarea matInput formControlName="description" rows="5" required></textarea>
+          <mat-error *ngIf="incidentForm.get('description')?.hasError('required')">Description is required</mat-error>
+        </mat-form-field>
+
+        <div class="photo-picker">
+          <input type="file" accept="image/*" capture="environment" id="photo-input" (change)="onPhotoSelected($event)" hidden>
+          <label for="photo-input" class="photo-label">
+            <span>{{ photoPreview ? 'Retake photo' : 'Add photo (optional)' }}</span>
+          </label>
+          <img *ngIf="photoPreview" [src]="photoPreview" class="photo-preview" alt="Selected photo">
+        </div>
+
+        <button mat-raised-button color="accent" type="submit" [disabled]="incidentForm.invalid || submitting" class="full-width">
+          Submit Report
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,135 @@
+@import "variables";
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  display: block;
+  background-color: var(--light-background);
+  color: #{$dark-primary-text};
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: $primary-color;
+}
+
+button.cta {
+  font-size: 1.05rem;
+  padding: 0.6rem 2rem;
+  background-color: $accent-color !important;
+  color: white !important;
+  border-radius: var(--radius-sm) !important;
+}
+button.cta:hover {
+  background-color: $accent-darker-color !important;
+}
+
+// Animaciones
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-up {
+  opacity: 0;
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+// Standard content card used across dashboard pages
+.card {
+  width: 100%;
+  overflow: hidden;
+
+  mat-card-header {
+    background-color: $primary-color;
+    padding: 16px 20px;
+    margin: -1px -1px 0;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+
+  mat-card-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 17px;
+    font-weight: 600;
+    color: white;
+    gap: 8px;
+
+    mat-icon:not(:last-child) {
+      color: white;
+      margin-right: 4px;
+    }
+  }
+
+  mat-card-title-group {
+    width: 100%;
+    align-items: center;
+
+    mat-card-title {
+      justify-content: flex-start;
+      gap: 4px;
+
+      mat-icon {
+        color: white;
+        margin-right: 8px;
+      }
+    }
+
+    > mat-icon:last-child {
+      cursor: pointer;
+      color: $primary-color;
+      background: white;
+      border-radius: 999px;
+      padding: 6px;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color .15s ease;
+
+      &:hover {
+        background: $primary-lighter-color;
+      }
+    }
+  }
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.top-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.full-width {
+  width: 100%;
+}

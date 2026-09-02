@@ -1,0 +1,32 @@
+<div class="page-container">
+  <div class="quick-links">
+    <a mat-stroked-button routerLink="/shifts" class="shifts-link">
+      <mat-icon>event_note</mat-icon>
+      My Shifts
+    </a>
+    <a mat-stroked-button routerLink="/report-incident" class="shifts-link">
+      <mat-icon>report_problem</mat-icon>
+      Report Incident
+    </a>
+  </div>
+  <div class="card-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-icon mat-card-avatar>qr_code_scanner</mat-icon>
+        <mat-card-title>QR Code Scanner</mat-card-title>
+      </mat-card-header>
+      <mat-card-content [ngClass]="{'camera': permissionsGranted}">
+        <ng-container *ngIf="!permissionsGranted; else scannerContent">
+          <mat-icon class="permission-icon">no_photography</mat-icon>
+          <p>Camera and location permissions are required to use the scanner.</p>
+          <button mat-raised-button color="accent" (click)="requestPermissions()">
+            Request permissions
+          </button>
+        </ng-container>
+        <ng-template #scannerContent>
+          <app-qr-scanner></app-qr-scanner>
+        </ng-template>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

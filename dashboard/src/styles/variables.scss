@@ -1,0 +1,68 @@
+// Light Theme Text
+$dark-text: #1f2937;
+$dark-primary-text: rgba($dark-text, 0.87);
+$dark-accent-text: rgba($dark-primary-text, 0.6);
+$dark-disabled-text: rgba($dark-primary-text, 0.38);
+$dark-dividers: rgba($dark-primary-text, 0.12);
+$dark-focused: rgba($dark-primary-text, 0.12);
+
+
+// Dark Theme text
+$light-text: #f8fafa;
+$light-primary-text: $light-text;
+$light-accent-text: rgba($light-primary-text, 0.7);
+$light-disabled-text: rgba($light-primary-text, 0.5);
+$light-dividers: rgba($light-primary-text, 0.12);
+$light-focused: rgba($light-primary-text, 0.12);
+
+// Light bg
+$light-background:    #f4f7f7;
+$light-bg-darker-5:   darken($light-background, 5%);
+$light-bg-darker-10:  darken($light-background, 10%);
+$light-bg-darker-20:  darken($light-background, 20%);
+$light-bg-darker-30:  darken($light-background, 30%);
+$light-bg-lighter-5:  lighten($light-background, 5%);
+$dark-bg-tooltip:     lighten(#1f2937, 20%);
+$dark-bg-alpha-4:     rgba(#1f2937, 0.04);
+$dark-bg-alpha-12:    rgba(#1f2937, 0.12);
+
+// Dark bg
+$dark-background:     #12292b;
+$dark-bg-lighter-5:   lighten($dark-background, 5%);
+$dark-bg-lighter-10:  lighten($dark-background, 10%);
+$dark-bg-lighter-20:  lighten($dark-background, 20%);
+$dark-bg-lighter-30:  lighten($dark-background, 30%);
+$light-bg-alpha-4:    rgba(#f8fafa, 0.04);
+$light-bg-alpha-12:   rgba(#f8fafa, 0.12);
+
+// Brand — deep confident teal, refined from the original patrol-tech teal
+$primary-color: #0f5257;
+$primary-lighter-color: #b8d8d6;
+$primary-darker-color: #082f32;
+$text-primary-color: #{$light-primary-text};
+$text-primary-lighter-color: #{$dark-primary-text};
+$text-primary-darker-color: #{$light-primary-text};
+
+// Accent — warm amber (replaces the old construction-orange for a more premium feel)
+$accent-color: #d97706;
+$accent-lighter-color: #fbd9a5;
+$accent-darker-color: #a85a02;
+$text-accent-color: #{$light-primary-text};
+$text-accent-lighter-color: #{$dark-primary-text};
+$text-accent-darker-color: #{$light-primary-text};
+
+$warn-color: #dc2626;
+$warn-lighter-color: #f3b4b4;
+$warn-darker-color: #a31d1d;
+
+// Semantic status colours (shift/scan/checkpoint status chips, etc.)
+$success-color: #16a34a;
+$success-lighter-color: #bbf0cd;
+$info-color: #2563eb;
+$info-lighter-color: #bfd4fb;
+
+// Neutral surfaces
+$surface-color: #ffffff;
+$surface-alt-color: #eef3f3;
+$border-color: #dde6e6;
+$text-muted-color: rgba($dark-text, 0.6);

@@ -1,0 +1,45 @@
+<div class="login-page">
+  <div class="brand">
+    <img ngSrc="/spider-facilities-icon.png" alt="Spider Facilities" width="56" height="56"/>
+    <h1>Spider Facilities</h1>
+    <p>Sign in to start your patrol</p>
+  </div>
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Organisation ID</mat-label>
+          <input matInput formControlName="organizationId" required (blur)="onOrganizationIdBlur()">
+          <mat-error *ngIf="loginForm.get('organizationId')?.hasError('required')">
+            Organisation ID is required
+          </mat-error>
+        </mat-form-field>
+
+        <ng-container *ngIf="organizationVerified">
+          <mat-form-field *ngIf="fastAuth" appearance="fill" class="full-width">
+            <mat-label>Patroller</mat-label>
+            <mat-select formControlName="patrollerIdentifier" required>
+              <mat-option *ngFor="let patroller of patrollers" [value]="patroller.identifier">
+                {{patroller.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field *ngIf="!fastAuth" appearance="fill" class="full-width">
+            <mat-label>Patroller ID</mat-label>
+            <input matInput formControlName="patrollerIdentifier" required>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="full-width pin-field">
+            <mat-label>PIN</mat-label>
+            <input matInput formControlName="pin" type="password" inputmode="numeric" maxlength="6" autocomplete="off" required>
+          </mat-form-field>
+        </ng-container>
+
+        <button mat-raised-button color="accent" type="submit" [disabled]="loginForm.invalid" class="full-width">
+          Sign In
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

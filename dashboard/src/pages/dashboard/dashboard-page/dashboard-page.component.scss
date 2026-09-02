@@ -1,0 +1,29 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.top-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  width: 100%;
+  mat-card-title {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 768px) {
+  .top-cards {
+    flex-direction: row;
+  }
+
+  .top-cards .card {
+    width: calc(50% - 10px);
+  }
+}

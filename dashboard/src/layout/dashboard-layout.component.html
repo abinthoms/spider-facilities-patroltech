@@ -1,0 +1,96 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === false">
+    <div class="brand">
+      <mat-icon>shield</mat-icon>
+      <span>Spider Facilities</span>
+    </div>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon matListItemIcon>dashboard</mat-icon>
+        <span matListItemTitle>Dashboard</span>
+      </a>
+      <a mat-list-item routerLink="/scans" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>list_alt_check</mat-icon>
+        <span matListItemTitle>Scans</span>
+      </a>
+      <a mat-list-item routerLink="/users" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>manage_accounts</mat-icon>
+        <span matListItemTitle>Users</span>
+      </a>
+      <a mat-list-item routerLink="/patrollers" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>policy</mat-icon>
+        <span matListItemTitle>Patrollers</span>
+      </a>
+      <a mat-list-item routerLink="/control-room" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>monitor_heart</mat-icon>
+        <span matListItemTitle>Control Room</span>
+      </a>
+      <a mat-list-item routerLink="/incidents" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>report_problem</mat-icon>
+        <span matListItemTitle>Incidents</span>
+      </a>
+      <a mat-list-item routerLink="/rota" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>event_note</mat-icon>
+        <span matListItemTitle>Rota</span>
+      </a>
+      <a mat-list-item routerLink="/timesheet" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>schedule</mat-icon>
+        <span matListItemTitle>Timesheet</span>
+      </a>
+      <a mat-list-item routerLink="/audit-log" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>history</mat-icon>
+        <span matListItemTitle>Audit Log</span>
+      </a>
+      <a mat-list-item routerLink="/sites" routerLinkActive="active-link">
+        <mat-icon matListItemIcon>store</mat-icon>
+        <span matListItemTitle>Sites</span>
+      </a>
+<!--      <a mat-list-item routerLink="/settings">Configuración</a>-->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>{{organizationName}}</span>
+      <span class="spacer-small"></span>
+      <mat-form-field appearance="outline" class="location-select">
+        <mat-select [value]="selectedLocation" (selectionChange)="onLocationChange($event.value)" placeholder="Select location">
+          <mat-option *ngFor="let location of locations" [value]="location">
+            {{location.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <span class="spacer"></span>
+      <button mat-icon-button [matMenuTriggerFor]="notificationMenu" aria-label="Notifications">
+<!--        <mat-icon matBadge="3" matBadgeColor="warn">notifications</mat-icon>-->
+        <mat-icon >notifications</mat-icon>
+      </button>
+      <mat-menu #notificationMenu="matMenu">
+        <button mat-menu-item>No news!!</button>
+<!--        <button mat-menu-item>Notificación 1</button>-->
+<!--        <button mat-menu-item>Notificación 2</button>-->
+<!--        <button mat-menu-item>Notificación 3</button>-->
+      </mat-menu>
+      <button mat-icon-button [matMenuTriggerFor]="userMenu" aria-label="User">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item disabled>{{ user.name }}</button>
+        <button mat-menu-item (click)="logout()">Log out</button>
+      </mat-menu>
+    </mat-toolbar>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

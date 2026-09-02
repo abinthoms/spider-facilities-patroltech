@@ -1,0 +1,21 @@
+<div class="page-container">
+  <div class="header-row">
+    <h2>My Incidents</h2>
+    <a mat-button routerLink="/">Back to scanner</a>
+  </div>
+
+  <mat-card *ngFor="let incident of incidents" class="incident-card">
+    <mat-card-content>
+      <div class="incident-row">
+        <div class="incident-info">
+          <div class="incident-title">{{ incident.title }}</div>
+          <div class="incident-meta">{{ incident.category }} · {{ incident.occurredAt | date:'dd MMM yyyy HH:mm' }}</div>
+          <div class="incident-site" *ngIf="incident.Location">{{ incident.Location.address }}</div>
+        </div>
+        <span class="status-chip status-{{ incident.status.replace('_', '-') }}">{{ incident.status.replace('_', ' ') }}</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <p *ngIf="incidents.length === 0" class="no-incidents">No incidents reported yet.</p>
+</div>

@@ -1,0 +1,68 @@
+<mat-card class="card full-width">
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title><mat-icon mat-card-avatar>policy</mat-icon>Patrollers</mat-card-title>
+      <mat-icon (click)="addPatroller()">add</mat-icon>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="identifier">
+        <th mat-header-cell *matHeaderCellDef>Identifier</th>
+        <td mat-cell *matCellDef="let element">{{ element.identifier }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef>Phone</th>
+        <td mat-cell *matCellDef="let element">{{ element.phone ?? '—' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="sia">
+        <th mat-header-cell *matHeaderCellDef>SIA Licence</th>
+        <td mat-cell *matCellDef="let element">
+          <span class="status-chip {{ getSiaStatus(element).cssClass }}" [matTooltip]="element.siaLicenceType ?? ''">
+            {{ getSiaStatus(element).label }}
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="rightToWork">
+        <th mat-header-cell *matHeaderCellDef>Right to Work</th>
+        <td mat-cell *matCellDef="let element">
+          <span class="status-chip {{ getRightToWorkStatus(element).cssClass }}" [matTooltip]="element.rightToWorkDocumentType ?? ''">
+            {{ getRightToWorkStatus(element).label }}
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="pin">
+        <th mat-header-cell *matHeaderCellDef>PIN</th>
+        <td mat-cell *matCellDef="let element">
+          <span class="status-chip" [class.status-completed]="element.pinSet" [class.status-cancelled]="!element.pinSet">
+            {{ element.pinSet ? 'PIN set' : 'No PIN' }}
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <mat-icon class="row-action" (click)="editPatroller(element)" matTooltip="Edit patroller">edit</mat-icon>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="7">No patrollers yet</td>
+      </tr>
+    </table>
+  </mat-card-content>
+</mat-card>

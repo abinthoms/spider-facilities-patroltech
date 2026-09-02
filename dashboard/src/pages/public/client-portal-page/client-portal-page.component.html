@@ -1,0 +1,60 @@
+<div class="portal-page">
+  <header class="portal-header">
+    <mat-icon>shield</mat-icon>
+    <span>Spider Facilities Client Compliance Portal</span>
+  </header>
+
+  <div class="portal-loading" *ngIf="loading">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+
+  <div class="portal-not-found" *ngIf="!loading && notFound">
+    <mat-icon>link_off</mat-icon>
+    <h2>Link not found</h2>
+    <p>This compliance portal link is invalid or has been revoked. Please contact your security provider for an up-to-date link.</p>
+  </div>
+
+  <div class="portal-content" *ngIf="!loading && !notFound && data">
+    <h1>{{ data.siteName }}</h1>
+    <p class="updated-at">Live status &mdash; last updated {{ data.generatedAt | date:'HH:mm:ss' }}</p>
+
+    <div class="summary-cards">
+      <div class="summary-card">
+        <span class="summary-value">{{ data.guardsOnSite.length }}</span>
+        <span class="summary-label">Guard{{ data.guardsOnSite.length === 1 ? '' : 's' }} currently on site</span>
+      </div>
+      <div class="summary-card">
+        <span class="summary-value">{{ data.shiftsToday }}</span>
+        <span class="summary-label">Shift{{ data.shiftsToday === 1 ? '' : 's' }} on site today</span>
+      </div>
+    </div>
+
+    <div class="guards-list" *ngIf="data.guardsOnSite.length; else noGuards">
+      <div class="guard-card" *ngFor="let guard of data.guardsOnSite" [class.non-compliant]="!fullyCompliant(guard)">
+        <div class="guard-name">
+          <mat-icon>{{ fullyCompliant(guard) ? 'verified_user' : 'gpp_maybe' }}</mat-icon>
+          {{ guard.name }}
+        </div>
+        <div class="guard-since">On site since {{ guard.onSiteSince | date:'HH:mm' }}</div>
+        <div class="badges">
+          <span class="badge" [class.badge-ok]="guard.siaCompliant" [class.badge-warn]="!guard.siaCompliant">
+            {{ guard.siaCompliant ? 'SIA Licensed' : 'SIA Status Unverified' }}
+          </span>
+          <span class="badge" [class.badge-ok]="guard.rightToWorkCompliant" [class.badge-warn]="!guard.rightToWorkCompliant">
+            {{ guard.rightToWorkCompliant ? 'Right to Work Verified' : 'Right to Work Unverified' }}
+          </span>
+        </div>
+      </div>
+    </div>
+    <ng-template #noGuards>
+      <div class="no-guards">No guards are currently clocked in at this site.</div>
+    </ng-template>
+
+    <p class="disclaimer">
+      This page reflects live records held by the security provider and refreshes automatically.
+      It is provided for site compliance transparency and does not constitute legal advice.
+    </p>
+  </div>
+
+  <footer class="portal-footer">Powered by Spider Facilities</footer>
+</div>
